@@ -141,9 +141,17 @@ if (!function_exists('woof_draw_checkbox_childs'))
         $not_toggled_terms_count = intval($WOOF->settings['not_toggled_terms_count'][$tax_slug]);
     }
 
-    //***  
+    //***
 
     $terms = apply_filters('woof_sort_terms_before_out', $terms, 'checkbox');
+    $tmp_terms = $terms;
+    foreach ($tmp_terms as $key=>$term){
+	    $count = $this->dynamic_count($term, 'multi', $_REQUEST['additional_taxes']);
+        if($count === 0){
+            unset($tmp_terms[$key]);
+        }
+    }
+    $terms = $tmp_terms;
     $terms_count_printed = 0;
     $hide_next_term_li = false;
     ?>
