@@ -44,9 +44,10 @@ function leto_main_navigation() {
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
+					'menu_class'        => 'primary-menu nav_ul',
 				) );
 			?>
-		</nav><!-- #site-navigation -->	
+		</nav><!-- #site-navigation -->
 
 		<div class="header-mobile-menu">
 			<div class="header-mobile-menu__inner">
@@ -54,7 +55,7 @@ function leto_main_navigation() {
 					<span><?php esc_html_e( 'Toggle menu', 'leto' ); ?></span>
 				</button>
 			</div>
-		</div><!-- /.header-mobile-menu -->		
+		</div><!-- /.header-mobile-menu -->
 
 
 		<?php $show_menu_additions = get_theme_mod( 'leto_show_menu_additions', 1 ); ?>
@@ -64,7 +65,7 @@ function leto_main_navigation() {
 				<?php if ( class_exists( 'WooCommerce' ) ) : ?>
 					<?php if ( is_user_logged_in() ) { ?>
 						<a href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="Account"><span class="prefix"><?php esc_html_e( 'My account', 'leto' ); ?></span> <span class="suffix ion-person"></span></a>
-					<?php } 
+					<?php }
 					else { ?>
 						<a href="<?php echo esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ); ?>" title="Login"><span class="prefix"><?php esc_html_e( 'Login/Register', 'leto' ); ?></span> <span class="suffix ion-person"></span></a>
 					<?php } ?>
@@ -90,7 +91,7 @@ function leto_main_navigation() {
 				</div>
 			</li>
 			<?php endif; //end Woocommerce class_exists check ?>
-			
+
 			<?php
 			$enable_search = get_theme_mod( 'leto_enable_search', 1 );
 			if ( $enable_search ) : ?>
@@ -116,7 +117,7 @@ function leto_mobile_menu() {
 	<div class="mobile-menu">
 		<div class="container-full">
 			<div class="mobile-menu__search">
-				
+
 				<?php get_search_form(); ?>
 
 			</div><!-- /.mobile-menu__search -->
@@ -139,14 +140,14 @@ add_action( 'leto_before_page', 'leto_mobile_menu' );
  * Banner for pages and shop archives
  */
 function leto_page_banner() {
-	
+
 	if ( is_home() || is_front_page() || is_page_template( 'page-templates/template_page-builder.php') ) {
 		return;
 	}
 
 	$wc_check = class_exists( 'WooCommerce' );
 
-	if ( $wc_check && is_shop() ) {	
+	if ( $wc_check && is_shop() ) {
 		$hero = get_the_post_thumbnail_url( get_option( 'woocommerce_shop_page_id' ) );
 	} elseif ( $wc_check &&  ( is_product_category() || is_product_tag() ) ) {
 	    global $wp_query;
@@ -184,7 +185,7 @@ function leto_page_banner() {
 				<h1 class="page-title"><?php woocommerce_page_title(); ?></h1>
 			<?php endif; ?>
 		</div>
-	</div>		
+	</div>
 	<?php
 }
 add_action( 'leto_after_header', 'leto_page_banner' );
@@ -205,7 +206,7 @@ function leto_archives_header() {
 			<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
 		<?php elseif ( is_home() ) : ?>
 			<h1 class="entry-title"><?php single_post_title(); ?></h1>
-		<?php endif; ?>		
+		<?php endif; ?>
 		</div>
 	</div><!-- /.page-header -->
 
@@ -231,8 +232,8 @@ function leto_slider_defaults() {
 			'slider_text'			=> __( 'Welcome to our site', 'leto'),
 			'slider_smalltext'		=> __( 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', 'leto'),
 			'slider_button_link'	=> '#primary',
-			'slider_button_text'	=> __( 'I am ready', 'leto'),	
-		),			
+			'slider_button_text'	=> __( 'I am ready', 'leto'),
+		),
 	);
 	return $defaults;
 }
@@ -248,6 +249,6 @@ function leto_hero_slider() {
 
 	echo '<div class="hero-area">';
 		the_custom_header_markup();
-	echo '</div>';		
+	echo '</div>';
 }
 add_action( 'leto_after_header', 'leto_hero_slider' );

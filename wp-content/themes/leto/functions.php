@@ -126,7 +126,7 @@ function leto_widgets_init() {
 			'before_title'  => '<h3 class="widget-title">',
 			'after_title'   => '</h3>',
 		) );
-	}	
+	}
 
 	if ( class_exists('WooCommerce') ) {
 		register_widget( 'Leto_Product_Loop' );
@@ -146,7 +146,7 @@ add_action( 'widgets_init', 'leto_widgets_init' );
  */
 function leto_scripts() {
 	wp_enqueue_style( 'leto-style', get_stylesheet_uri() );
-
+	wp_enqueue_style( 'my-styles', get_template_directory_uri() . '/css/my.css', array(), true );
 	wp_enqueue_style( 'leto-fonts', '//fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i', array(), null );
 
 	wp_enqueue_script( 'leto-scripts', get_template_directory_uri() . '/js/plugins.js', array('jquery'),'20170711', true );
@@ -241,13 +241,13 @@ function leto_recommended_plugins() {
             'name'               => 'WooCommerce',
             'slug'               => 'woocommerce',
             'required'           => false,
-    ); 
+    );
 
     $plugins[] = array(
             'name'               => 'Kirki',
             'slug'               => 'kirki',
             'required'           => false,
-    );      
+    );
 
     tgmpa( $plugins);
 

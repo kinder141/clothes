@@ -32,10 +32,10 @@
 	<?php do_action( 'leto_before_header' ); ?>
 
 	<header id="masthead" class="site-header">
-		<div class="header-floating-trigger">
+		<div class="header-floating-trigger  menu">
 			<div class="header-navigation header-floating">
 				<div class="container-full">
-					<div class="site-header__content">			
+					<div class="site-header__content">
 					<?php do_action( 'leto_inside_header' ); ?>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 
 	<?php $container = leto_container_type(); ?>
 	<div id="content" class="site-content">
-		<?php do_action( 'leto_before_container' ); ?>		
+		<?php do_action( 'leto_before_container' ); ?>
 		<div class="<?php echo esc_attr( $container ); ?> clearfix">
 			<div class="row">
 
