@@ -102,7 +102,7 @@
 
 	// Search box
 	function searchBox() {
-		$( '.site-header' ).on( 'click', '.toggle-search-box', function( e ) {
+		$( '.site-footer' ).on( 'click', '.toggle-search-box', function( e ) {
 			e.preventDefault();
 			$( 'body' ).addClass( 'search-box-active' );
 		} );

@@ -2233,6 +2233,20 @@ html {
 /*}*/
 .site-content{
     padding-top: 100px;
+    padding: 0;
+}
+.tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-custom img, a.wishlist_products_counter.top_wishlist-custom img, span.wishlist_products_counter.top_wishlist-custom img{
+    width: 30px !important;
+    max-height: unset !important;
+    max-width: unset !important;
+}
+.footer section{
+    display: inline;
+    padding: 0;
+    margin: 0 !important;
+}
+.site-footer .footer .widget ul li a{
+    color:white
 }
 .container-fluid {
     width: 100%;
@@ -5025,6 +5039,10 @@ body input:required:valid, body textarea:required:valid {
     width: 100%;
     background: #000;
 }
+.nav-link-right{
+    height: 40px;
+}
+
 .nav-link-right>li a{
     color: white !important;
 }
@@ -5630,10 +5648,13 @@ section {
     border-bottom: 1px solid #485056;
     margin: 10px 0
 }
-
+.site-footer{
+    padding: 0;
+    z-index: 100;
+}
 .footer {
     background-color: #2a2b30;
-    z-index: 9;
+
     padding-left: 40px;
     width: 100%;
     padding-right: 40px;
