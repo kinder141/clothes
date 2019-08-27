@@ -36,7 +36,9 @@
 			<div class="header-navigation header-floating">
 				<div class="container-full">
 					<div class="site-header__content">
-					<?php do_action( 'leto_inside_header' ); ?>
+					<?php
+                    do_action( 'leto_inside_header' );
+                    ?>
 					</div>
 				</div>
 			</div>

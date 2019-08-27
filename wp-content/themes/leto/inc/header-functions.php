@@ -115,18 +115,14 @@ add_action( 'leto_inside_header', 'leto_main_navigation', 9 );
 function leto_mobile_menu() {
 	?>
 	<div class="mobile-menu">
-		<div class="container-full">
-			<div class="mobile-menu__search">
-
-				<?php get_search_form(); ?>
-
-			</div><!-- /.mobile-menu__search -->
+		<div class="">
 
 			<nav class="mobile-menu__navigation">
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
+					'menu_class'        => 'mobile-accordion',
 				) );
 			?>
 			</nav><!-- /.mobile-menu__navigation -->
