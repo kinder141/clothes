@@ -197,9 +197,12 @@ function leto_archives_header() {
     $cat_name = get_query_var('category_name');
     $tag_ID = get_query_var('tag_id');
 $tag_name = get_query_var('tag');
+$request = $_REQUEST;
 	?>
-    <?if($cat_ID==='pwb-brand') :?>
-    <h1 class="page-title">Бренд <?woocommerce_page_title()?></h1>
+    <?if($cat_ID==='pwb-brand' && isset($request['swoof'])) :?>
+        <h1 class="page-title">Бренд <?=ucfirst($term_name)?></h1>
+	<?elseif($cat_ID==='pwb-brand'):?>
+        <h1 class="page-title">Бренд <?woocommerce_page_title()?></h1>
     <?else:?>
         <h1 class="page-title"><?woocommerce_page_title()?></h1>
     <?endif?>
