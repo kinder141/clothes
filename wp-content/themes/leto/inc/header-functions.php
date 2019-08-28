@@ -190,25 +190,22 @@ add_action( 'leto_after_header', 'leto_page_banner' );
  * Page header for archives
  */
 function leto_archives_header() {
+	$cat_ID = get_query_var('taxonomy');
+	$term_name = get_query_var('term');
+	$cat     = get_query_var('cat');
 
-	if ( ( !is_home() && !is_archive() ) || is_front_page() || ( class_exists( 'WooCommerce' ) && is_woocommerce() ) ) {
-		return;
-	}
-
+    $cat_name = get_query_var('category_name');
+    $tag_ID = get_query_var('tag_id');
+$tag_name = get_query_var('tag');
 	?>
-	<div class="page-header text-center">
-		<div class="container">
-		<?php if ( is_archive() ) : ?>
-			<?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
-		<?php elseif ( is_home() ) : ?>
-			<h1 class="entry-title"><?php single_post_title(); ?></h1>
-		<?php endif; ?>
-		</div>
-	</div><!-- /.page-header -->
-
+    <?if($cat_ID==='pwb-brand') :?>
+    <h1 class="page-title">Бренд <?woocommerce_page_title()?></h1>
+    <?else:?>
+        <h1 class="page-title"><?woocommerce_page_title()?></h1>
+    <?endif?>
 	<?php
 }
-add_action( 'leto_after_header', 'leto_archives_header', 11 );
+//add_action( 'leto_after_header', 'leto_archives_header', 11 );
 
 
 /**

@@ -75,7 +75,7 @@ try {
             )
     );
 } catch (Exeption $e) {
-    
+
 }
 
 //***
@@ -592,7 +592,7 @@ final class WOOF {
                         // return $wp_query;
                     }
                 }
-                
+
                 //var_dump($wp_query->is_tax);
                 if (!empty($wp_query->tax_query) AND isset($wp_query->tax_query->queries)) {
                     /*
@@ -1194,7 +1194,7 @@ final class WOOF {
         if (isset($this->settings['overlay_skin']) AND ( $this->settings['overlay_skin'] != 'default' AND $this->settings['overlay_skin'] != 'plainoverlay')) {
             ?>
 
-            <img  style="display: none;" src="<?php echo WOOF_LINK ?>img/loading-master/<?php echo $this->settings['overlay_skin'] ?>.svg" alt="preloader" /> 
+            <img  style="display: none;" src="<?php echo WOOF_LINK ?>img/loading-master/<?php echo $this->settings['overlay_skin'] ?>.svg" alt="preloader" />
 
             <?php
         }
@@ -1420,9 +1420,9 @@ final class WOOF {
         }
 
         //any way we not display count for the selected terms
-        if ($term_is_in_query) {
-            return 0;
-        }
+//        if ($term_is_in_query) {
+//            return 0;
+//        }
 
         //***
 
@@ -1784,7 +1784,7 @@ final class WOOF {
                 //echo "<span id='is_woo_shortcode'></span>";
             }
         }
-        //++++        
+        //++++
         //for ajax output
         //if (get_option('woof_try_ajax', 0) AND ! isset($_REQUEST['woof_products_doing'])AND ! $is_wc_shortcode) {// woo3.3
         if (get_option('woof_try_ajax', 0) AND ! isset($_REQUEST['woof_products_doing'])AND ! $is_wc_shortcode) {
@@ -2019,7 +2019,7 @@ final class WOOF {
                 if (version_compare(WOOCOMMERCE_VERSION, '3.0', '>=')) {
 
 //                    $args['tax_query'][] = array(
-//                            'relation' => 'OR',                        
+//                            'relation' => 'OR',
 //                            array(
 //                                'taxonomy' => 'product_visibility',
 //                                'field' => 'name',
@@ -2126,11 +2126,11 @@ final class WOOF {
         //***
         //this needs just for AJAX mode for shortcode [woof] in woof_draw_products()
         $_REQUEST['woof_additional_taxonomies_string'] = $taxonomies;
-        // fix visibility    
+        // fix visibility
         $tax_query = $this->get_tax_query($taxonomies);
         if (version_compare(WOOCOMMERCE_VERSION, '3.0', '>=') AND version_compare(WOOCOMMERCE_VERSION, '3.3', '<')) {
             $tax_query = $this->listen_catalog_visibility($tax_query);
-        } elseif (version_compare(WOOCOMMERCE_VERSION, '3.3', '>=')) {         // woo3.3         
+        } elseif (version_compare(WOOCOMMERCE_VERSION, '3.3', '>=')) {         // woo3.3
             $tax_query = $this->product_visibility_not_in($tax_query, $this->generate_visibility_keys($this->is_isset_in_request_data($this->get_swoof_search_slug())));
         }
         //+++
@@ -2307,7 +2307,7 @@ final class WOOF {
         global $woocommerce_loop;
         $woocommerce_loop['columns'] = $columns;
         $woocommerce_loop['loop'] = 0;
-        // woo3.3 
+        // woo3.3
         if (version_compare(WOOCOMMERCE_VERSION, '3.3', '>=')) {
             $this->set_loop_properties($products, $columns);
         }
@@ -2333,14 +2333,14 @@ final class WOOF {
                     $show_loop_filters = false;
                 }
             }
-              if(!$hide_products){  
+              if(!$hide_products){
             if ($show_loop_filters) {
                 do_action('woocommerce_before_shop_loop');
             }
 
             //***
-                
-            
+
+
 
             if (function_exists('woocommerce_product_loop_start')) {
                 woocommerce_product_loop_start();
@@ -2371,8 +2371,8 @@ final class WOOF {
                             }
                         } else {
                             $custom_tpl = str_replace('.' . pathinfo($custom_tpl, PATHINFO_EXTENSION), '', str_replace("..", "", $custom_tpl));
-                            //$custom_tpl=str_replace("..","",$custom_tpl);                           
-                            //$custom_tpl = preg_replace('/\.' . preg_quote(pathinfo($custom_tpl, PATHINFO_EXTENSION), '/') . '$/', '', $custom_tpl); 
+                            //$custom_tpl=str_replace("..","",$custom_tpl);
+                            //$custom_tpl = preg_replace('/\.' . preg_quote(pathinfo($custom_tpl, PATHINFO_EXTENSION), '/') . '$/', '', $custom_tpl);
                             echo $this->render_html(get_theme_file_path($custom_tpl . ".php"), array(
                                 'the_products' => $products
                             ));
@@ -2387,9 +2387,9 @@ final class WOOF {
                     if (function_exists('woocommerce_product_loop_end')) {
                         woocommerce_product_loop_end();
                     }
-                   
+
                     ?>
-                   
+
                     <?php
                     if ($show_loop_filters) {
                         do_action('woocommerce_after_shop_loop');
@@ -2450,7 +2450,7 @@ final class WOOF {
             if (version_compare(WOOCOMMERCE_VERSION, '3.3', '>=')) {
                 wc_reset_loop();
             }
-            //+++            
+            //+++
 
             unset($_REQUEST['woof_products_doing']);
 
@@ -2621,8 +2621,8 @@ final class WOOF {
                 $args['autosubmit'] = get_option('woof_autosubmit', 0);
             }
 
-            $_REQUEST['hide_terms_count_txt_short'] = -1;            
-            
+            $_REQUEST['hide_terms_count_txt_short'] = -1;
+
             if (isset($atts['ajax_redraw'])) {
                 $args['ajax_redraw'] = $atts['ajax_redraw'];
             } else {
@@ -2653,9 +2653,9 @@ final class WOOF {
             if (current_user_can('create_users')) {
                 $args['show_woof_edit_view'] = isset($this->settings['show_woof_edit_view']) ? (int) $this->settings['show_woof_edit_view'] : 1;
             }
-            
 
-            
+
+
 
             //lets assemble shortcode txt for ajax mode for data-shortcode in woof.php
             $_REQUEST['woof_shortcode_txt'] = 'woof ';
@@ -3084,7 +3084,7 @@ final class WOOF {
         }
 
         //***
-        // woo3.3 
+        // woo3.3
         public function set_loop_properties($query, $columns) {
             wc_set_loop_prop('is_paginated', true);
             wc_set_loop_prop('total_pages', $query->max_num_pages);
@@ -3120,7 +3120,7 @@ final class WOOF {
             return $tax_query;
         }
 
-        public function woof_overide_template($template, $template_name, $template_path) {           
+        public function woof_overide_template($template, $template_name, $template_path) {
             return $template;
         }
 
@@ -3232,7 +3232,7 @@ final class WOOF {
 
         public function sort_terms_before_out($terms, $type) {
             //var_dump(count($terms));
-            // return $terms; 
+            // return $terms;
             $term = reset($terms);
             if (!$term) {
                 return $terms;

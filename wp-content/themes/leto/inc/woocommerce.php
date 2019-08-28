@@ -28,6 +28,8 @@ function leto_woocommerce_actions() {
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 	add_action('woocommerce_before_main_content', 'leto_wc_wrapper_start', 10);
+	add_action('woocommerce_before_main_content', 'leto_archives_header', 15);
+	add_action('woocommerce_before_main_content', 'leto_wc_wrapper_start', 10);
 	add_action('woocommerce_after_main_content', 'leto_wc_wrapper_end', 10);
 	//Custom pricing and modal opener
 	add_action( 'woocommerce_after_shop_loop_item_title', 'leto_loop_pricing_button' );
@@ -48,7 +50,7 @@ function leto_woocommerce_actions() {
 	//Remove sidebar on single products
 	if ( is_single() || ( is_archive() && $fullwidth_archives ) ) {
 		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
-	}	
+	}
 	//Single product wrappers
 	add_action( 'woocommerce_before_single_product_summary', 'leto_wrap_single_product_before', 1 );
 	add_action( 'woocommerce_after_single_product_summary', 'leto_wrap_single_product_after', 1 );
@@ -63,7 +65,7 @@ function leto_woocommerce_actions() {
 	//Remove page title from archives
 	add_filter( 'woocommerce_show_page_title', '__return_false' );
 	//Remove breadcrumbs
-	remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+	//remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 	//Shop results and ordering wrappers
 	add_action( 'woocommerce_before_shop_loop', 'leto_before_shop_results', 19 );
 	add_action( 'woocommerce_before_shop_loop', 'leto_after_shop_results', 21 );
@@ -106,7 +108,7 @@ function leto_wc_wrapper_end() {
  * Helper function to check if current page is WC archive
  */
 function leto_wc_archive_check() {
-    if ( is_shop() || is_product_category() || is_product_tag() ) {
+    if ( is_shop() || is_product_category() || is_product_tag() || is_tax()) {
         return true;
     } else {
         return false;
@@ -153,7 +155,7 @@ function leto_wrap_single_product_before() {
 
 }
 function leto_wrap_single_product_after() {
-	echo 	'</div>';	
+	echo 	'</div>';
 	echo '</div>';
 }
 
@@ -167,7 +169,7 @@ function leto_wrap_single_product_gallery_before() {
 	global $product, $post;
 	$gallery_ids = $product->get_gallery_image_ids();
 
-	$gallery = empty( $gallery_ids ) ? 'no-gallery' : 'has-gallery';	
+	$gallery = empty( $gallery_ids ) ? 'no-gallery' : 'has-gallery';
 
 	if ( $product_layout == 'product-layout-2' ) {
 		echo '<div class="col-xs-12 col-sm-12 col-md-5 product-images-wrapper">';
@@ -185,9 +187,9 @@ function leto_wrap_single_product_gallery_after() {
 	$product_layout = get_theme_mod( 'leto_product_layout', 'product-layout-1');
 
 	if ( $product_layout == 'product-layout-2' ) {
-		echo '<div class="col-xs-12 col-sm-12 col-md-6 product-detail-summary sticky-element">';	
+		echo '<div class="col-xs-12 col-sm-12 col-md-6 product-detail-summary sticky-element">';
 	} else {
-		echo '<div class="col-xs-12 col-sm-12 col-md-5 product-detail-summary">';		
+		echo '<div class="col-xs-12 col-sm-12 col-md-5 product-detail-summary">';
 	}
 
 
@@ -208,7 +210,7 @@ function leto_loop_pricing_button() {
 	echo 		'<a href="#modal-quickview" class="product-quickview">' . esc_html__( 'Show more', 'leto' ) . '</a>';
 	echo 	'</div>';
 	echo '</div>';
-	
+
 	$hide_modal = get_theme_mod( 'leto_disable_quickview' );
 	if ( !$hide_modal ) {
 		get_template_part( 'template-parts/woocommerce', 'modal' );
@@ -245,9 +247,9 @@ function leto_single_gallery_nav() {
 		echo '<div class="slick-slide">' . wp_get_attachment_image( $post_thumb, 'medium' ) . '</div>';
 		foreach( $gallery_ids as $gallery_id ) {
 			echo '<div class="slick-slide">' . wp_get_attachment_image( $gallery_id, 'medium' ) . '</div>';
-		} 							
+		}
 	?>
-	</div>	
+	</div>
 	<?php
 }
 
@@ -279,8 +281,8 @@ function leto_header_add_to_cart_fragment( $fragments ) {
 	<div class="cart-mini-wrapper__inner"><?php woocommerce_mini_cart(); ?></div>
 
 	<?php
-	$fragments['.cart-mini-wrapper__inner'] = ob_get_clean();	
-	
+	$fragments['.cart-mini-wrapper__inner'] = ob_get_clean();
+
 	return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'leto_header_add_to_cart_fragment' );

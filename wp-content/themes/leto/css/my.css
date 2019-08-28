@@ -1933,10 +1933,10 @@ hr {
     overflow: visible
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin-top: 0;
-    margin-bottom: .5rem
-}
+/*h1, h2, h3, h4, h5, h6 {*/
+/*    margin-top: 0;*/
+/*    margin-bottom: .5rem*/
+/*}*/
 
 p {
     margin-top: 0;
@@ -2233,12 +2233,59 @@ html {
 /*}*/
 .site-content{
     padding-top: 100px;
-    padding: 0;
 }
+.post-type-archive .site-content {
+    padding-top: 0px;
+}
+#content{
+    border: none;
+}
+/*}*/
 .tinv-wishlist .tinvwl_add_to_wishlist_button.tinvwl-icon-custom img, a.wishlist_products_counter.top_wishlist-custom img, span.wishlist_products_counter.top_wishlist-custom img{
     width: 30px !important;
     max-height: unset !important;
     max-width: unset !important;
+}
+.woof_container_inner.woof_container_inner_productcategories h4{
+    display: none;
+}
+.WOOF_Widget .widget{
+    width: 100%;
+}
+.woof_list.woof_list_checkbox>li{
+    color: #999;
+    background-color: #2a2b30;
+    text-transform: uppercase;
+    font-family: 'Lucida Sans Unicode',arial;
+    list-style-type: none;
+    font-size: 16px;
+    padding-left: 20px;
+    -webkit-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
+    letter-spacing: 1px;
+    border-bottom: 2px #000 solid;
+    height: 53px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.woof_list.woof_list_checkbox input[type="checkbox"]{
+    display: none;
+}
+.woof_list.woof_list_checkbox>.selected{
+    background-color: #3c3c44;
+    color: #fff;
+    cursor: none;
+}
+.woof_list label{
+    padding-top: 11px;
+    width: 100%;
 }
 .footer section{
     display: inline;
@@ -2248,6 +2295,10 @@ html {
 .site-footer .footer .widget ul li a{
     color:white
 }
+.woof_products_top_panel{
+    display: none;
+}
+
 .container-fluid {
     width: 100%;
     padding-right: 15px;
@@ -2255,7 +2306,28 @@ html {
     margin-right: auto;
     margin-left: auto
 }
+.main-navigation ul li{
+    padding: 0;
+}
+.page-title{
+    color:black;
+}
+.archive.post-type-archive #primary{
+    background: #fff;
+}
+.archive.tax-pwb-brand #primary{
+    background: #fff;
+}
 
+.archive.post-type-archive .page-header{
+    padding: 0;
+}
+.shop-filter-toolbar{
+    display: none;
+}
+/*body a,p,span,h2,h3,h4,h5,h6,label{*/
+/*    color:white !important;*/
+/*}*/
 /*.row {*/
 /*    display: -webkit-box;*/
 /*    display: -webkit-flex;*/
@@ -5322,7 +5394,7 @@ section {
     display: -ms-flexbox;
     display: flex;
     min-height: 100%;
-    padding-top: 87px
+    /*padding-top: 87px*/
 }
 
 .catalog {
@@ -5649,6 +5721,7 @@ section {
     margin: 10px 0
 }
 .site-footer{
+    border-top: none ;
     padding: 0;
     z-index: 100;
 }
