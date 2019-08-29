@@ -32,11 +32,11 @@ function leto_woocommerce_actions() {
 	add_action('woocommerce_before_main_content', 'leto_wc_wrapper_start', 10);
 	add_action('woocommerce_after_main_content', 'leto_wc_wrapper_end', 10);
 	//Custom pricing and modal opener
-	add_action( 'woocommerce_after_shop_loop_item_title', 'leto_loop_pricing_button' );
+	add_action( 'woocommerce_shop_loop_item_title', 'leto_loop_pricing_button' );
 	remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price' );
-	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
-	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
-	add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_link_close', 11 );
+	//remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart' );
+	remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 1 );
+	add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_link_close', 5 );
 	//Inner loop product wrapper
 	add_action( 'woocommerce_before_shop_loop_item', 'leto_wrap_loop_product_content_before', 9 );
 	add_action( 'woocommerce_after_shop_loop_item', 'leto_wrap_loop_product_content_after', 6 );
@@ -48,9 +48,9 @@ function leto_woocommerce_actions() {
 	remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5 );
 	add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_rating', 9 );
 	//Remove sidebar on single products
-	if ( is_single() || ( is_archive() && $fullwidth_archives ) ) {
-		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
-	}
+//	if ( is_single() || ( is_archive() && $fullwidth_archives ) ) {
+//		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
+//	}
 	//Single product wrappers
 	add_action( 'woocommerce_before_single_product_summary', 'leto_wrap_single_product_before', 1 );
 	add_action( 'woocommerce_after_single_product_summary', 'leto_wrap_single_product_after', 1 );
@@ -202,14 +202,15 @@ function leto_wrap_single_product_details_after() {
  * Pricing and modal opener on loop products
  */
 function leto_loop_pricing_button() {
-	echo '<div class="product-price-button">';
-	echo 	'<span class="product-price">';
-			woocommerce_template_loop_price();
-	echo 	'</span>';
-	echo 	'<div class="product-button">';
-	echo 		'<a href="#modal-quickview" class="product-quickview">' . esc_html__( 'Show more', 'leto' ) . '</a>';
-	echo 	'</div>';
-	echo '</div>';
+	woocommerce_template_loop_price();
+//	echo '<div class="product-price-button">';
+//	echo 	'<span class="product-price">';
+//
+//	echo 	'</span>';
+//	echo 	'<div class="product-button">';
+//	echo 		'<a href="#modal-quickview" class="product-quickview">' . esc_html__( 'Show more', 'leto' ) . '</a>';
+//	echo 	'</div>';
+//	echo '</div>';
 
 	$hide_modal = get_theme_mod( 'leto_disable_quickview' );
 	if ( !$hide_modal ) {

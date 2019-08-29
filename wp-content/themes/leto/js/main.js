@@ -29,6 +29,22 @@
 		}
 	}
 
+	$('.thwepo-extra-options.thwepo_simple input[type=radio]').on('change', function() {
+
+		$.each($('input[name=length]:checked').parent().parent().children(),function(index,val){
+			if($(val).hasClass('active')){
+				$(val).removeClass('active')
+			}
+		})
+		$.each($('input[name=sizes]:checked').parent().parent().children(),function(index,val){
+			if($(val).hasClass('active')){
+				$(val).removeClass('active')
+			}
+		})
+		$('input[name=length]:checked').parent().addClass('active')
+		$('input[name=sizes]:checked').parent().addClass('active')
+	});
+
 	function socialLinks() {
 		$( '.social-media-list li a' ).attr( 'target', '_blank' );
 	}

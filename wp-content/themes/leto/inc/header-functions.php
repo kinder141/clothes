@@ -192,12 +192,10 @@ add_action( 'leto_after_header', 'leto_page_banner' );
 function leto_archives_header() {
 	$cat_ID = get_query_var('taxonomy');
 	$term_name = get_query_var('term');
-	$cat     = get_query_var('cat');
-
-    $cat_name = get_query_var('category_name');
-    $tag_ID = get_query_var('tag_id');
-$tag_name = get_query_var('tag');
-$request = $_REQUEST;
+    $request = $_REQUEST;
+    if(is_product()){
+        return;
+    }
 	?>
     <?if($cat_ID==='pwb-brand' && isset($request['swoof'])) :?>
         <h1 class="page-title">Бренд <?=ucfirst($term_name)?></h1>

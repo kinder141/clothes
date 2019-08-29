@@ -36,15 +36,15 @@ msgstr ""
 msgid "https://siteorigin.com"
 msgstr ""
 
-#: siteorigin-panels.php:334
+#: siteorigin-panels.php:338
 msgid "Read More"
 msgstr ""
 
-#: siteorigin-panels.php:482
+#: siteorigin-panels.php:486
 msgid "Edit Home Page"
 msgstr ""
 
-#: siteorigin-panels.php:502, tpl/js-templates.php:34, tpl/js-templates.php:36
+#: siteorigin-panels.php:506, tpl/js-templates.php:34, tpl/js-templates.php:36
 msgid "Live Editor"
 msgstr ""
 

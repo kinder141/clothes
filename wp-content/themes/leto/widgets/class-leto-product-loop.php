@@ -12,7 +12,7 @@ class Leto_Product_Loop extends WP_Widget {
 		parent::__construct(false, $name = __('Leto: Product loop', 'leto'), $widget_ops);
 		$this->alt_option_name = 'leto_product_loop';
 	}
-	
+
 	function form($instance) {
 		$title     		= isset( $instance['title'] ) ? esc_attr( $instance['title'] ) : '';
 		$includes       = isset( $instance['includes'] ) ? array_map( 'esc_attr', $instance['includes'] ) : '';
@@ -40,20 +40,20 @@ class Leto_Product_Loop extends WP_Widget {
                 );?>
                <?php endforeach; ?>
        	</select>
-	</p>  
+	</p>
    <p><input class="checkbox" type="checkbox" <?php checked( $show_filter ); ?> id="<?php echo $this->get_field_id( 'show_filter' ); ?>" name="<?php echo $this->get_field_name( 'show_filter' ); ?>" />
    <label for="<?php echo $this->get_field_id( 'show_filter' ); ?>"><?php _e( 'Show navigation filter? (category slugs must be specified)', 'leto' ); ?></label></p>
    <p><label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of products to show:', 'leto' ); ?></label>
    <input id="<?php echo $this->get_field_id( 'number' ); ?>" name="<?php echo $this->get_field_name( 'number' ); ?>" type="number" value="<?php echo $number; ?>" size="3" /></p>
 	<p><label for="<?php echo $this->get_field_id('orderby'); ?>"><?php _e('Order products by', 'leto'); ?></label>
-        <select name="<?php echo $this->get_field_name('orderby'); ?>" id="<?php echo $this->get_field_id('orderby'); ?>">		
+        <select name="<?php echo $this->get_field_name('orderby'); ?>" id="<?php echo $this->get_field_id('orderby'); ?>">
 			<option value="date" <?php selected( $orderby, 'date' ); ?>><?php echo __('Date', 'leto'); ?></option>
 			<option value="meta_value_num" <?php selected( $orderby, 'meta_value_num' ); ?>><?php echo __('Best sellers', 'leto'); ?></option>
 			<option value="rand" <?php selected( $orderby, 'rand' ); ?>><?php echo __('Random', 'leto'); ?></option>
        	</select>
     </p>
 	<p><label for="<?php echo $this->get_field_id('mode'); ?>"><?php _e('Pick the style for this widget:', 'leto'); ?></label>
-        <select name="<?php echo $this->get_field_name('mode'); ?>" id="<?php echo $this->get_field_id('mode'); ?>">		
+        <select name="<?php echo $this->get_field_name('mode'); ?>" id="<?php echo $this->get_field_id('mode'); ?>">
 			<option value="grid" <?php selected( $mode, 'grid' ); ?>><?php echo __('Grid', 'leto'); ?></option>
 			<option value="best-seller-slider" <?php selected( $mode, 'best-seller-slider' ); ?>><?php echo __('Carousel', 'leto'); ?></option>
        	</select>
@@ -61,16 +61,16 @@ class Leto_Product_Loop extends WP_Widget {
 
     <p><em><?php echo esc_attr__( 'You can add a button under the products', 'leto' ); ?></em></p>
    <p><label for="<?php echo $this->get_field_id( 'button_url' ); ?>"><?php _e( 'Button URL', 'leto' ); ?></label>
-   <input class="widefat" id="<?php echo $this->get_field_id( 'button_url' ); ?>" name="<?php echo $this->get_field_name( 'button_url' ); ?>" type="url" value="<?php echo $button_url; ?>" size="3" /></p>    
+   <input class="widefat" id="<?php echo $this->get_field_id( 'button_url' ); ?>" name="<?php echo $this->get_field_name( 'button_url' ); ?>" type="url" value="<?php echo $button_url; ?>" size="3" /></p>
    <p><label for="<?php echo $this->get_field_id( 'button_text' ); ?>"><?php _e( 'Button text', 'leto' ); ?></label>
-   <input class="widefat" id="<?php echo $this->get_field_id( 'button_text' ); ?>" name="<?php echo $this->get_field_name( 'button_text' ); ?>" type="text" value="<?php echo $button_text; ?>" size="3" /></p>    
+   <input class="widefat" id="<?php echo $this->get_field_id( 'button_text' ); ?>" name="<?php echo $this->get_field_name( 'button_text' ); ?>" type="text" value="<?php echo $button_text; ?>" size="3" /></p>
 	<?php
 	}
 
 	function update($new_instance, $old_instance) {
 		$instance = $old_instance;
 		$instance['title'] 			= sanitize_text_field($new_instance['title']);
-		$instance['includes'] 		= array_map( 'sanitize_text_field', (array)$new_instance['includes'] );			
+		$instance['includes'] 		= array_map( 'sanitize_text_field', (array)$new_instance['includes'] );
 		$instance['number']         = intval($new_instance['number']);
 		$instance['show_filter']    = isset( $new_instance['show_filter'] ) ? (bool) $new_instance['show_filter'] : false;
 	    $instance['mode'] 			= sanitize_text_field($new_instance['mode']);
@@ -81,7 +81,7 @@ class Leto_Product_Loop extends WP_Widget {
 
 		return $instance;
 	}
-		
+
 	function widget($args, $instance) {
 		if ( ! isset( $args['widget_id'] ) ) {
 			$args['widget_id'] = $this->id;
@@ -93,7 +93,7 @@ class Leto_Product_Loop extends WP_Widget {
     	if ( !empty( $includes ) ) {
 
     		$includes = array_filter( $includes );
-    		$tax_query = array(                           
+    		$tax_query = array(
 				array(
 					'taxonomy' => 'product_cat',
 					'field' => 'term_id',
@@ -107,7 +107,7 @@ class Leto_Product_Loop extends WP_Widget {
 	    $number        	= ( ! empty( $instance['number'] ) ) ? intval( $instance['number'] ) : 6;
 	    if ( ! $number ) {
 	      $number = 6;
-	    } 
+	    }
 	    $show_filter   	= isset( $instance['show_filter'] ) ? (bool) $instance['show_filter'] : true;
 		$mode 			= isset( $instance['mode'] ) ? esc_html($instance['mode']) : 'grid';
 		$orderby 		= isset( $instance['orderby'] ) ? esc_html($instance['orderby']) : 'date';
@@ -131,7 +131,7 @@ class Leto_Product_Loop extends WP_Widget {
 			<?php if ( $title ) echo $args['before_title'] . $title . $args['after_title']; ?>
 
 			<div class="best-seller-section wrap-<?php echo $mode; ?>">
-				
+
 				<?php if ( $mode == 'grid' ) : ?>
 				    <?php //Begin product category filter
 				      if ( $includes && $show_filter == true ) :
@@ -160,12 +160,12 @@ class Leto_Product_Loop extends WP_Widget {
 					</ul>
 					<?php endif; ?>
 				<?php endif; ?>
-							
+
 				<div class="woocommerce best-seller-products products <?php echo $mode; ?>">
-			
+
 				<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-					<?php 
+					<?php
 						global $post;
 						$id = $post->ID;
 						$termsArray = get_the_terms( $id, 'product_cat' );
@@ -177,8 +177,8 @@ class Leto_Product_Loop extends WP_Widget {
 							}
 						}
 					?>
-	
-					<div class="col-xs-6 col-sm-6 col-md-3 product <?php echo $termsString; ?>"> 
+
+					<div class="col-xs-6 col-sm-6 col-md-3 product <?php echo $termsString; ?>">
 						<div class="product-inner">
 							<?php if ( has_post_thumbnail() ) : ?>
 							<div class="product-thumb">
@@ -221,5 +221,5 @@ class Leto_Product_Loop extends WP_Widget {
 		endif;
 		echo $args['after_widget'];
 	}
-	
+
 }

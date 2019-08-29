@@ -47,7 +47,7 @@
 
 	<?php do_action( 'leto_after_header' ); ?>
 
-	<?php $container = leto_container_type(); ?>
+	<?php $container = leto_container_type(); if(is_product()) $container='container-full' ?>
 	<div id="content" class="site-content">
 		<?php do_action( 'leto_before_container' ); ?>
 		<div class="<?php echo esc_attr( $container ); ?> clearfix">
