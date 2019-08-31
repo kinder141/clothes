@@ -19,6 +19,7 @@
  */
 
 // ** MySQL settings - You can get this info from your web host ** //
+define('WP_MEMORY_LIMIT', '100M');
 /** The name of the database for WordPress */
 define( 'DB_NAME', 'clothes' );
 

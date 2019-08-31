@@ -3,7 +3,22 @@
 Template Name: Fullwidth
 */
 
-get_header(); ?>
+get_header();
+?>
+    <?if(!is_front_page()):?>
+    <style>
+        .site-content{
+            padding-top: 0;
+            background: #fff;
+        }
+        .page-header{
+            padding-bottom: 0;
+            padding-top: 125px;
+            background: #fff;
+
+        }
+    </style>
+    <?endif;?>
 <div id="primary" class="content-area fullwidth">
 	<main id="main" class="site-main" role="main">
 

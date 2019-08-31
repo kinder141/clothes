@@ -2461,7 +2461,9 @@ html {
     width: auto;
     max-width: none
 }
-
+.home .sow-slider-base .sow-slider-pagination{
+    left: -50%;
+}
 .col-1 {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 8.33333%;
