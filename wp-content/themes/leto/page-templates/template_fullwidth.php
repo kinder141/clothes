@@ -19,6 +19,13 @@ get_header();
         }
     </style>
     <?endif;?>
+    <?if(is_wishlist()):?>
+    <style>
+        .page-header{
+            margin-bottom: 0;
+        }
+    </style>
+    <?endif;?>
 <div id="primary" class="content-area fullwidth">
 	<main id="main" class="site-main" role="main">
 
